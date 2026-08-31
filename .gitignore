@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+__pycache__/
+venv/
+.venv/
+
+# Python
+*.py[cod]
+.pytest_cache/
+
+# Build files
+build/
+dist/
+release/
+site/
+*.spec.bak
+
+# Distribution files
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Caches and logs
+*.cpuprofile
+*.log
+*.tsbuildinfo
+.cache/
+.eslintcache
+
+# Coverage
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Examples
+example/
+example.zip
+
+# Never ignore .gitkeep files
+!**/.gitkeep
+
+# macOS
+.DS_Store
+
+# Temporary files
+/TODO
+tmp/
+temp_dir/
+
+# IDEs & Editors
+.idea/
+.vscode/
+*~
+
+# Project-specific
+mkdocs_material.egg-info/
+
+# Adding data 
+data/
+
+# env 
+.env 
