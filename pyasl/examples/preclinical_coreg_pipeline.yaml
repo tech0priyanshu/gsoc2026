@@ -1,0 +1,74 @@
+pipeline:
+  name: preclinical_coreg_normalize
+
+# Example: Run co-registration and normalization on preclinical ASL data.
+# Requires:
+#   - ctx["ImageCtr"]  : ASL control image (numpy array)
+#   - anat_path param  : path to anatomical NIfTI reference
+#   - template_path    : path to template NIfTI for normalization
+
+nodes:        # -> list 
+  - id: load_data     # -> each  item  in dictionary 
+    function: NIfTILoader
+    outputs:
+      - ImageCtr
+
+  - id:  motion_correction   
+    function: MotionCheck
+    depends_on:
+      - load_data   # load_data ->  init pipline by loading asl control image 
+
+  - id: diff_image
+    function: DiffImage
+    depends_on:
+      - motion_correction   # motion correction  -> quality check before processing 
+
+  - id: compute_m0
+    function: ComputeM0
+    depends_on:
+      - diff_image
+    config:
+      TR: 4000
+      T1t: 1900
+
+  - id: cbf_relative
+    function: CBFRelative
+    depends_on:
+      - compute_m0
+    config:
+      vmax: 10
+
+  - id: brain_mask
+    function: BrainMask
+    depends_on:
+      - cbf_relative
+    config:
+      thres: 0.2
+      open_iter: 2
+      close_iter: 2
+
+  - id: coregistration
+    function: PreclinicalCoregister
+    depends_on:
+      - brain_mask
+    config:
+      anat_path: ""        # Fill in path to anatomical NIfTI
+      interp_order: 1
+      cost: MI
+      save_coreg: true
+
+  - id: normalization
+    function: PreclinicalNormalize
+    depends_on:
+      - coregistration
+    config:
+      template_path: ""   # Fill in path to template NIfTI
+      interp_order: 1
+      save_normalized: true
+
+  - id: save_outputs
+    function: SaveOutputs
+    depends_on:
+      - normalization
+
+# diff_image -> 

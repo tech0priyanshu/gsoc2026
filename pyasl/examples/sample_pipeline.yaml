@@ -1,0 +1,26 @@
+pipeline:
+  name: asl_processing
+
+nodes:
+  - id: import_data
+    function: pyasl.load_data
+    outputs:
+      - raw_data
+
+  - id: motion_correction
+    function: pyasl.modules.asltbx_realign.realign
+    depends_on:
+      - import_data
+    inputs:
+      raw_data: import_data.raw_data
+    outputs:
+      - corrected_data
+
+  - id: quantification
+    function: pyasl.modules.asltbx_perfusion_quantify.perfuse
+    depends_on:
+      - motion_correction
+    inputs:
+      corrected_data: motion_correction.corrected_data
+    outputs:
+      - cbf_map
