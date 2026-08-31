@@ -1,30 +1,42 @@
-# PyASL: Composite Python Library for ASL Image Processing
+# PyASL: GUI-Based ASL Pipeline Execution & Visualization
+<img width="1071" height="113" alt="image" src="https://github.com/user-attachments/assets/dd8867bc-9659-4880-8512-e1d92f423735" />
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/elooff/pyasl/master/docs/source/_static/gsoc_logo.svg" alt="Google Summer of Code" height="50"/>
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/elooff/pyasl/master/docs/source/_static/osipi_logo.png" alt="OSIPI" height="70"/>
-</p>
 
-**PyASL** is an open-source Python library for processing arterial spin labeling (ASL) MRI data, developed under the [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/) program for the [ISMRM OSIPI Task Force 2.2](https://osipi.ismrm.org/task-forces/task-force-2-2/).
-
-It integrates multiple community-validated ASL tools, originally in MATLAB, and supports both human and preclinical pipelines. PyASL includes modules for ASL-MRICloud, ASLtbx, DL-ASL, Oxford ASL, preclinical multi-TI PASL, and preclinical pCASL, harmonized with ASL-BIDS input format.
+PyASL is an open-source Python library for processing arterial spin labeling (ASL) MRI data. This GSoC contribution focuses on improving the PyASL application with a user-friendly GUI for pipeline execution, batch processing, and visualization of NumPy-based outputs.
 
 ## Features
 
-- 🧠 Read both human and preclinical ASL data format
-- 📂 _(NEW!)_ Zero programming knowledge required for running a pipeline
-- 🧩 _(NEW!)_ Mix & match preprocessing steps across different pipelines
-- ➕ _(NEW!)_ Easy plug-in for adding new preprocessing steps
-- 📘 [Tutorials and Documentation](https://pyasl.readthedocs.io/en/latest/index.html)
+-  **GUI-based pipeline execution**
+-  **Batch processing** of large numbers of output files
+-  **(NEW!) NumPy visualization** for inspecting processing results
+-  **(NEW!) Background processing** keeps the application responsive
+-  **(NEW!) Automatic gallery updates** when pipeline processing finishes
+-  Visualization support for both **light and dark application themes**
+-  **Ready-to-use image exports** for sharing results
 
-## Citation
+## Engineering Highlights
 
-This library is part of the ISMRM 2025 submission:
-_ISMRM Open Science Initiative for Perfusion Imaging (OSIPI): Composite Python Library for ASL Image Processing_
+- Visualization tasks are processed in the background so the GUI remains responsive.
+- The results gallery is automatically updated when a pipeline completes.
+- The application efficiently handles large batches of output files.
+- Visualizations adapt automatically to the application's light and dark themes.
+- The workflow allows users to inspect pipeline outputs without writing additional Python scripts.
 
-For previous contributions of this project, please refer to [Yifan Shuai's work](https://github.com/Trico01/PyASL) for GSoC 2024.
+## Project Impact
+
+-  Removes the need to write Python scripts to inspect output files.
+-  Makes it easier to visually verify ASL processing results.
+-  Reduces the time required to review large batches of outputs.
+-  Simplifies sharing results through ready-to-use image exports.
+
+## Documentation
+
+ Tutorials and documentation will provide guidance for running pipelines, processing batches, and visualizing generated results.
+
+## GSoC
+
+This work was developed as part of **Google Summer of Code (GSoC)** with the **Open Science Initiative for Perfusion Imaging (OSIPI)**.
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](https://github.com/elooff/PyASL/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License – see the `LICENSE` file for details.
